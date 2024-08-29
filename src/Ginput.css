@@ -1,0 +1,26 @@
+.Ginput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px; /* Add spacing between the text fields */
+    border: none;
+  height: 100%;
+  font-size: 1.25rem;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.Ginput .MuiTextField-root {
+    width: 300px; /* You can adjust the width as needed */
+    border: none;
+  height: 100%;
+  font-size: 1.25rem;
+  width: 40%;
+  margin-left: 5px;
+}
+
+.Ginput .MuiButton-root {
+    margin-top: 16px; /* Add spacing above the button */
+    width: 150px; /* Adjust width if needed */
+}
