@@ -47,8 +47,9 @@ function Ginput() {
     }
   };
 
-  const handleResultClick = (result, setGameData) => {
+  const handleResultClick = (result, setGameData, setSearchResult) => {
     setGameData(result); // Update text field with the clicked result
+    setSearchResult([]); // Clear search results
   };
 
   return (
@@ -68,7 +69,7 @@ function Ginput() {
       {game1.length > 2 && searchResult1.length > 0 && (
         <SearchResults
           searchResult={searchResult1}
-          onResultClick={(result) => handleResultClick(result, setGame1)}
+          onResultClick={(result) => handleResultClick(result, setGame1, setSearchResult1)}
         />
       )}
 
@@ -87,7 +88,7 @@ function Ginput() {
       {game2.length > 2 && searchResult2.length > 0 && (
         <SearchResults
           searchResult={searchResult2}
-          onResultClick={(result) => handleResultClick(result, setGame2)}
+          onResultClick={(result) => handleResultClick(result, setGame2, setSearchResult2)}
         />
       )}
 
