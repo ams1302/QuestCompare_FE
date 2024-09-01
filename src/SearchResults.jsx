@@ -5,13 +5,13 @@ function SearchResults({ searchResult, onResultClick }) {
     return (
         <div className="results-list">
             {searchResult.length > 0 ? (
-                searchResult.map((result, id) => (
+                searchResult.map((result) => (
                     <div
-                      key={id}
+                      key={result.id} // Use ID for uniqueness
                       className="result-item"
-                      onClick={() => onResultClick(result)}
+                      onClick={() => onResultClick(result)} // Pass the entire result object
                     >
-                      {result}
+                      {result.name}
                     </div>
                 ))
             ) : (

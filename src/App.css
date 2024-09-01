@@ -7,7 +7,12 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   padding-top: 60px; /* Adjust based on Navbar height */
+  
 }
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
+
 
 .Navbar {
   width: 100%;
@@ -18,7 +23,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* Ensure the navbar is above other content */
+  z-index: 1000;
+  font-family: 'Comic Sans MS','cursive' ,sans-serif; /* Ensure the navbar is above other content */
 }
 
 .Navbar h1 {
