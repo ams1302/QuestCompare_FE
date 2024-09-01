@@ -12,11 +12,13 @@ import {
   DialogContent,
   DialogActions,
   TextField,
+  Skeleton,
 } from "@mui/material";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion, useAnimation } from "framer-motion";
 
 // Settings for the carousel
 const sliderSettings = {
@@ -61,33 +63,44 @@ const sliderSettings = {
 
 function Gdisplay({ firstGame, secondGame }) {
   const [latestGames, setLatestGames] = useState([]);
-  const [open, setOpen] = useState(false); // State to handle modal visibility
-  const [inputValue, setInputValue] = useState(""); // State to handle input value
-  const [aiResponse, setAiResponse] = useState(""); // State to handle AI response
+  const [open, setOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [aiResponse, setAiResponse] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const controls = useAnimation();
 
   useEffect(() => {
-    // Fetch the latest two games from the backend
     const fetchLatestGames = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3001/api/latest-games"
-        );
-        setLatestGames(response.data);
+        const delay = 2000; // 2 seconds delay
+        const timeoutId = setTimeout(async () => {
+          try {
+            const response = await axios.get("http://localhost:3001/api/latest-games");
+            setLatestGames(response.data);
+            setLoading(false);
+            controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
+          } catch (error) {
+            console.error("Error fetching latest games:", error);
+            setLoading(false);
+          }
+        }, delay);
+
+        return () => clearTimeout(timeoutId);
       } catch (error) {
-        console.error("Error fetching latest games:", error);
+        console.error("Error:", error);
+        setLoading(false);
       }
     };
 
     fetchLatestGames();
-  }, []);
+  }, [controls]);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => setOpen(true);
 
   const handleClose = () => {
     setOpen(false);
-    setAiResponse(""); // Clear AI response when closing the modal
+    setAiResponse("");
   };
 
   const handleSubmit = async () => {
@@ -104,107 +117,118 @@ function Gdisplay({ firstGame, secondGame }) {
   };
 
   return (
-    <Grid
-      container
-      spacing={3}
-      sx={{ height: "100vh", bgcolor: "#1e1e1e", p: 2 }}
-    >
-      {latestGames.map((game, index) => (
-        <Grid item xs={12} md={6} key={index}>
-          <Box sx={{ p: 2, height: "100%" }}>
-            <Card
-              sx={{
-                height: "100%",
-                bgcolor: "#2c2c2c",
-                borderRadius: "10px",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
-                overflow: "hidden",
-              }}
-            >
-              <CardMedia
-                component="img"
+    <Grid container spacing={3} sx={{ height: "100vh", bgcolor: "#1e1e1e", p: 2 }}>
+      {loading ? (
+        [1, 2].map((_, index) => (
+          <Grid item xs={12} md={6} key={index}>
+            <Box sx={{ p: 2, height: "100%" }}>
+              <Card
                 sx={{
-                  height: "auto",
-                  maxHeight: 400,
-                  objectFit: "contain",
-                  borderBottom: "1px solid #444",
+                  height: "100%",
+                  bgcolor: "#2c2c2c",
+                  borderRadius: "10px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+                  overflow: "hidden",
                 }}
-                image={game.cover_url
-                  .replace("t_thumb", "t_1080p")
-                  .replace("//", "https://")}
-                alt={game.name}
-              />
-              <CardContent>
-                <Typography
-                  variant="h5"
-                  component="div"
-                  sx={{ color: "white", fontWeight: "bold", mb: 1 }}
+              >
+                <Skeleton variant="rectangular" height={200} />
+                <CardContent>
+                  <Skeleton width="60%" height={30} />
+                  <Skeleton width="80%" height={20} />
+                  <Skeleton width="70%" height={20} />
+                  <Skeleton width="80%" height={20} />
+                  <Skeleton width="90%" height={20} />
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+        ))
+      ) : (
+        latestGames.map((game, index) => (
+          <Grid item xs={12} md={6} key={index}>
+            <Box sx={{ p: 2, height: "100%" }}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={controls}
+                transition={{ duration: 0.8 }}
+              >
+                <Card
+                  sx={{
+                    height: "100%",
+                    bgcolor: "#2c2c2c",
+                    borderRadius: "10px",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+                    overflow: "hidden",
+                  }}
                 >
-                  {game.name}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Rating: {game.rating}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Genres: {game.genre_names.join(", ")}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Themes: {game.themes.join(", ")}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Released: {game.release_date}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Modes: {game.game_mode.join(", ")}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Developer: {game.developer.join(", ")}
-                </Typography>
-                <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                  Platforms: {game.platform_names.join(", ")}
-                </Typography>
-
-                {/* Screenshot Carousel */}
-                {game.screenshot_urls && game.screenshot_urls.length > 0 && (
-                  <Box sx={{ mt: 2 }}>
-                    <Typography
-                      variant="h6"
-                      component="div"
-                      gutterBottom
-                      sx={{ color: "white", mb: 2 }}
-                    >
-                      Screenshots
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      height: "auto",
+                      maxHeight: 400,
+                      objectFit: "contain",
+                      borderBottom: "1px solid #444",
+                    }}
+                    image={game.cover_url.replace("t_thumb", "t_1080p").replace("//", "https://")}
+                    alt={game.name}
+                  />
+                  <CardContent>
+                    <Typography variant="h5" component="div" sx={{ color: "white", fontWeight: "bold", mb: 1 }}>
+                      {game.name}
                     </Typography>
-                    <Slider {...sliderSettings}>
-                      {game.screenshot_urls.map((url, index) => (
-                        <Box
-                          key={index}
-                          sx={{ display: "flex", justifyContent: "center" }}
-                        >
-                          <img
-                            src={url
-                              .replace("t_thumb", "t_1080p")
-                              .replace("//", "https://")}
-                            alt={`Screenshot ${index + 1}`}
-                            style={{
-                              maxWidth: "100%",
-                              width: "90%",
-                              height: "auto",
-                              borderRadius: "8px",
-                            }}
-                          />
-                        </Box>
-                      ))}
-                    </Slider>
-                  </Box>
-                )}
-              </CardContent>
-            </Card>
-          </Box>
-        </Grid>
-      ))}
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Rating: {game.rating}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Genres: {game.genre_names.join(", ")}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Themes: {game.themes.join(", ")}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Released: {game.release_date}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Modes: {game.game_mode.join(", ")}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Developer: {game.developer.join(", ")}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
+                      Platforms: {game.platform_names.join(", ")}
+                    </Typography>
+                    {game.screenshot_urls && game.screenshot_urls.length > 0 && (
+                      <Box sx={{ mt: 2 }}>
+                        <Typography variant="h6" component="div" gutterBottom sx={{ color: "white", mb: 2 }}>
+                          Screenshots
+                        </Typography>
+                        <Slider {...sliderSettings}>
+                          {game.screenshot_urls.map((url, index) => (
+                            <Box key={index} sx={{ display: "flex", justifyContent: "center" }}>
+                              <img
+                                src={url.replace("t_thumb", "t_1080p").replace("//", "https://")}
+                                alt={`Screenshot ${index + 1}`}
+                                style={{
+                                  maxWidth: "100%",
+                                  width: "100%",
+                                  height: "auto",
+                                  borderRadius: "8px",
+                                  transition: "transform 0.5s ease-in-out",
+                                }}
+                              />
+                            </Box>
+                          ))}
+                        </Slider>
+                      </Box>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </Box>
+          </Grid>
+        ))
+      )}
 
-      {/* Button to open the modal */}
       {latestGames.length === 2 && (
         <Grid item xs={12}>
           <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
@@ -222,7 +246,7 @@ function Gdisplay({ firstGame, secondGame }) {
                 "&:hover": {
                   backgroundColor: "#a11477",
                 },
-                height: "100%",
+                transition: "background-color 0.3s ease-in-out",
               }}
               onClick={handleClickOpen}
             >
@@ -232,7 +256,6 @@ function Gdisplay({ firstGame, secondGame }) {
         </Grid>
       )}
 
-      {/* Modal structure */}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -246,57 +269,51 @@ function Gdisplay({ firstGame, secondGame }) {
           },
         }}
       >
-        <DialogTitle sx={{ color: "white", fontWeight: "bold" }}>
-          Get AI Assistance
-        </DialogTitle>
-        <DialogContent
-          sx={{
-            minHeight: "30vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <DialogTitle sx={{ color: "white", fontWeight: "bold" }}>AI Assistance</DialogTitle>
+        <DialogContent>
           {aiResponse ? (
             <Box
               sx={{
-                background: "linear-gradient(135deg, #f44336, #e91e63)",
+                backgroundColor: "#333",
                 color: "white",
+                borderRadius: "8px",
                 padding: "16px",
-                borderRadius: "12px",
-                border: "1px solid #d32f2f",
-                boxShadow: "0 8px 16px rgba(0, 0, 0, 0.5)",
-                textAlign: "center",
-                fontWeight: "bold",
-                animation: "fadeIn 1s",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
               }}
             >
-              <Typography variant="body1">{aiResponse}</Typography>
+              {aiResponse}
             </Box>
           ) : (
             <TextField
-              autoFocus
-              placeholder="I want to play a game in First Person Perspective..."
-              margin="dense"
-              sx={{
-                height: '100%',
-              }}
-              type="text"
               fullWidth
-              variant="outlined"
-              InputProps={{
-                sx: {
-                  bgcolor: "white",
-                  borderRadius: "5px",
-                  color: "#2c2c2c",
-                },
-              }}
+              multiline
+              rows={5}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Eg: I want to play a game with a sci-fi setting"
+              variant="outlined"
+              sx={{
+                backgroundColor: "#E1D9D1",
+                borderRadius: "8px",
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: "8px",
+                },
+              }}
             />
           )}
         </DialogContent>
         <DialogActions>
+          <Button
+            onClick={handleClose}
+            sx={{
+              color: "#e13661",
+              "&:hover": {
+                backgroundColor: "#f8f8f8",
+              },
+            }}
+          >
+            Cancel
+          </Button>
           {!aiResponse && (
             <Button
               onClick={handleSubmit}
@@ -304,18 +321,15 @@ function Gdisplay({ firstGame, secondGame }) {
               sx={{
                 backgroundColor: "#e13661",
                 color: "white",
-                fontWeight: "bold",
+                "&:hover": {
+                  backgroundColor: "#a11477",
+                },
+                transition: "background-color 0.3s ease-in-out",
               }}
             >
               Submit
             </Button>
           )}
-          <Button
-            onClick={handleClose}
-            sx={{ color: "#a11477", fontWeight: "bold" }}
-          >
-            {aiResponse ? 'Close' : 'Cancel'}
-          </Button>
         </DialogActions>
       </Dialog>
     </Grid>

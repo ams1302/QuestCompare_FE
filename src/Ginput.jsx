@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import axios from "axios";
@@ -6,16 +7,17 @@ import _ from "lodash";
 import "./Ginput.css";
 import SearchResults from "./SearchResults";
 
-function Ginput({setSubmitFlag,setFirstGame,setSecondGame}) {
+function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextComponent }) {
   const [game1, setGame1] = useState("");
   const [game2, setGame2] = useState("");
   const [searchResult1, setSearchResult1] = useState([]);
   const [searchResult2, setSearchResult2] = useState([]);
   const [validGame1, setValidGame1] = useState(false);
   const [validGame2, setValidGame2] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   useEffect(() => {
-    // Clear MongoDB collection on component mount
     const clearData = async () => {
       try {
         await axios.post('http://localhost:3001/api/clear');
@@ -41,18 +43,22 @@ function Ginput({setSubmitFlag,setFirstGame,setSecondGame}) {
 
   const handleSubmit = async (game1, game2) => {
     if (!isButtonDisabled()) {
-      // Handle finalize logic here
+      setLoading(true);
+      setButtonClicked(true);
       console.log('Choices finalized:', game1, game2);
       try {
-        const response = await axios.post('http://localhost:3001/api/mongoadd', {
+        await axios.post('http://localhost:3001/api/mongoadd', {
           game1, game2
         });
-        setFirstGame(game1)
-        setSecondGame(game2)
-        setSubmitFlag(true)
-        
+        setFirstGame(game1);
+        setSecondGame(game2);
+        setSubmitFlag(true);
+        // Trigger to show next component
+        setShowNextComponent(true);
       } catch (error) {
         console.error('Error fetching data from IGDB:', error);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -79,7 +85,7 @@ function Ginput({setSubmitFlag,setFirstGame,setSecondGame}) {
     } else {
       setSearchResult([]);
     }
-    setValidGame(false); // Reset validity on input change
+    setValidGame(false);
   };
 
   const handleResultClick = (result, setGameData, setSearchResult, setValidGame) => {
@@ -93,18 +99,28 @@ function Ginput({setSubmitFlag,setFirstGame,setSecondGame}) {
   };
 
   return (
-    <div className="Ginput">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.5 }}
+      className="Ginput"
+    >
       <TextField
         variant="outlined"
         InputProps={{
           style: {
             backgroundColor: "white",
+            borderRadius: "8px",
           },
         }}
         value={game1}
         onChange={(event) =>
           handleType(event.target.value, setGame1, setSearchResult1, setValidGame1)
         }
+        fullWidth
+        placeholder="Enter a video game (e.g., Cyberpunk 2077, Elden Ring)"
+        margin="normal"
       />
       {game1.length > 2 && searchResult1.length > 0 && (
         <SearchResults
@@ -118,12 +134,16 @@ function Ginput({setSubmitFlag,setFirstGame,setSecondGame}) {
         InputProps={{
           style: {
             backgroundColor: "white",
+            borderRadius: "8px",
           },
         }}
         value={game2}
         onChange={(event) =>
           handleType(event.target.value, setGame2, setSearchResult2, setValidGame2)
         }
+        fullWidth
+        placeholder="Enter a video game (e.g., Cyberpunk 2077, Elden Ring)"
+        margin="normal"
       />
       {game2.length > 2 && searchResult2.length > 0 && (
         <SearchResults
@@ -132,17 +152,60 @@ function Ginput({setSubmitFlag,setFirstGame,setSecondGame}) {
         />
       )}
 
-      <Button
-        variant="outlined"
-        style={{
-          backgroundColor: "white",
-        }}
-        onClick={() => handleSubmit(game1, game2)}
-        disabled={isButtonDisabled()} // Disable based on validity and empty fields
-      >
-        Finalize Choices
-      </Button>
-    </div>
+      {!isButtonDisabled() && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          style={{ position: 'relative' }}
+        >
+          {buttonClicked ? (
+            <span
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                border: "4px solid #e13661",
+                borderRadius: "50%",
+                borderTop: "4px solid white",
+                width: "24px",
+                height: "24px",
+                animation: "spin 1s linear infinite",
+              }}
+            ></span>
+          ) : (
+            <Button
+              variant="contained"
+              style={{
+                backgroundColor: "#e13661",
+                color: "white",
+                marginTop: "20px",
+                borderRadius: "8px",
+                position: "relative",
+                overflow: "hidden",
+                fontSize: "16px",
+                fontWeight: "bold",
+                textTransform: "none",
+              }}
+              onClick={() => handleSubmit(game1, game2)}
+              disabled={loading}
+            >
+              Finalize Choices
+            </Button>
+          )}
+          <style>
+            {`
+              @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            `}
+          </style>
+        </motion.div>
+      )}
+    </motion.div>
   );
 }
 

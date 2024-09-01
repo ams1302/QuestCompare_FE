@@ -1,0 +1,17 @@
+/* Add this CSS to style the skeleton loader and animation */
+.loading-skeleton {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
