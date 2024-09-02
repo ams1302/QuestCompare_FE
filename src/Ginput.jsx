@@ -119,7 +119,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
           handleType(event.target.value, setGame1, setSearchResult1, setValidGame1)
         }
         fullWidth
-        placeholder="Enter a video game (e.g., Cyberpunk 2077, Elden Ring)"
+        placeholder="Enter a video game (e.g., Sekiro, Bloodborne)"
         margin="normal"
       />
       {game1.length > 2 && searchResult1.length > 0 && (
@@ -142,7 +142,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
           handleType(event.target.value, setGame2, setSearchResult2, setValidGame2)
         }
         fullWidth
-        placeholder="Enter a video game (e.g., Cyberpunk 2077, Elden Ring)"
+        placeholder="Enter a video game (e.g., Sekiro, Bloodborne)"
         margin="normal"
       />
       {game2.length > 2 && searchResult2.length > 0 && (
@@ -151,6 +151,21 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
           onResultClick={(result) => handleResultClick(result, setGame2, setSearchResult2, setValidGame2)}
         />
       )}
+      {isButtonDisabled() && (
+  <div style={{
+    marginTop: '20px',
+    padding: '10px',
+    backgroundColor: '#282c34', /* Dark background for contrast */
+    color: '#61dafb', /* Light blue text color */
+    fontSize: '16px',
+    textAlign: 'center',
+    borderRadius: '5px',
+    border: '1px solid #61dafb', /* Matching border color */
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' /* Soft shadow for elevation */
+  }}>
+    Note: Choose the game from the drop-down search bar
+  </div>
+)}  
 
       {!isButtonDisabled() && (
         <motion.div

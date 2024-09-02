@@ -1,4 +1,9 @@
 /* Add this CSS to style the skeleton loader and animation */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
 .loading-skeleton {
     animation: pulse 1.5s infinite ease-in-out;
   }
@@ -14,4 +19,33 @@
       opacity: 1;
     }
   }
+  
+  body, h1, h2, h3, h4, h5, h6, p, span, a, li, dt, dd {
+    font-family: 'Montserrat    ', Arial, sans-serif;
+  }
+
+  /* Gdisplay.css */
+.platform-xbox {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .platform-playstation {
+    background-color: #2196F3; /* Blue */
+    color: white;
+  }
+  
+  .platform-nintendo {
+    background-color: #E91E63; /* Red */
+    color: white;
+  }
+  
+  .platform-pc {
+    background-color: #9E9E9E; /* Grey */
+    color: white;
+  }
+
+
+
+  
   
