@@ -543,7 +543,7 @@ function Gdisplay({ firstGame, secondGame }) {
             }}
           >
             {submitFlag ? (
-    <CircularProgress size={24} sx={{ color: "white" }} /> // Show the loading spinner
+    <CircularProgress size={24} sx={{ color: "white" }} /> 
   ) : (
     "Submit"
   )}

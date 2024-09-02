@@ -53,7 +53,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
         setFirstGame(game1);
         setSecondGame(game2);
         setSubmitFlag(true);
-        // Trigger to show next component
+        
         setShowNextComponent(true);
       } catch (error) {
         console.error('Error fetching data from IGDB:', error);
@@ -155,13 +155,13 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
   <div style={{
     marginTop: '20px',
     padding: '10px',
-    backgroundColor: '#282c34', /* Dark background for contrast */
-    color: '#61dafb', /* Light blue text color */
+    backgroundColor: '#282c34', 
+    color: '#61dafb', 
     fontSize: '16px',
     textAlign: 'center',
     borderRadius: '5px',
-    border: '1px solid #61dafb', /* Matching border color */
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' /* Soft shadow for elevation */
+    border: '1px solid #61dafb', 
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' 
   }}>
     Note: Choose the game from the drop-down search bar
   </div>

@@ -7,9 +7,9 @@ function SearchResults({ searchResult, onResultClick }) {
             {searchResult.length > 0 ? (
                 searchResult.map((result) => (
                     <div
-                      key={result.id} // Use ID for uniqueness
+                      key={result.id} 
                       className="result-item"
-                      onClick={() => onResultClick(result)} // Pass the entire result object
+                      onClick={() => onResultClick(result)} 
                     >
                       {result.name}
                     </div>
