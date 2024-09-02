@@ -186,7 +186,7 @@ function Gdisplay({ firstGame, secondGame }) {
                       Themes: {game.themes.join(", ")}
                     </Typography>
                     <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
-                      Released: {game.release_date}
+                      Release Date: {game.release_date}
                     </Typography>
                     <Typography variant="body1" sx={{ color: "white", mb: 0.5 }}>
                       Modes: {game.game_mode.join(", ")}
