@@ -19,6 +19,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion, useAnimation } from "framer-motion";
+import CircularProgress from '@mui/material/CircularProgress'; // Import the CircularProgress component
+
 import "./Gdisplay.css"
 
 // Settings for the carousel
@@ -98,6 +100,7 @@ function Gdisplay({ firstGame, secondGame }) {
   const [inputValue, setInputValue] = useState("");
   const [aiResponse, setAiResponse] = useState("");
   const [loading, setLoading] = useState(true);
+  const [submitFlag, setSubmitFlag]=useState(false)
 
   const controls = useAnimation();
 
@@ -135,6 +138,7 @@ function Gdisplay({ firstGame, secondGame }) {
   };
 
   const handleSubmit = async () => {
+    setSubmitFlag(true)
     try {
       const response = await axios.post("http://localhost:3001/api/send-to-api", {
         inputValue,
@@ -142,6 +146,7 @@ function Gdisplay({ firstGame, secondGame }) {
         secondGame,
       });
       setAiResponse(response.data.result);
+      setSubmitFlag(false)
     } catch (error) {
       console.error("Error submitting AI request:", error);
     }
@@ -537,7 +542,12 @@ function Gdisplay({ firstGame, secondGame }) {
               transition: "background-color 0.3s ease-in-out",
             }}
           >
-            Submit
+            {submitFlag ? (
+    <CircularProgress size={24} sx={{ color: "white" }} /> // Show the loading spinner
+  ) : (
+    "Submit"
+  )}
+
           </Button>
         </DialogActions>
       </Dialog>
