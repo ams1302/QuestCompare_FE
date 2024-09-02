@@ -142,7 +142,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
           handleType(event.target.value, setGame2, setSearchResult2, setValidGame2)
         }
         fullWidth
-        placeholder="Enter a video game (e.g., Elden , Bloodborne)"
+        placeholder="Enter a video game (e.g., Sekiro , Bloodborne)"
         margin="normal"
       />
       {game2.length > 2 && searchResult2.length > 0 && (
