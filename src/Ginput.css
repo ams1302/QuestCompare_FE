@@ -3,50 +3,50 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px; /* Add spacing between the text fields */
+  gap: 16px; 
   border: none;
   height: 100%;
   width: 100%;
   margin-left: 5px;
-  padding: 20px; /* Add some padding around the container */
-   /* Dark background for the overall container */
+  padding: 20px;
+  
 }
 
 .Ginput .MuiTextField-root {
-  width: 100%; /* Make text fields full-width */
-  max-width: 500px; /* Maximum width for text fields */
+  width: 100%;
+  max-width: 500px;
   border: none;
-  background: linear-gradient(145deg, #1f1f1f, #2b2b2b); /* Dark gradient background */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Smooth transition for effects */
+  background: linear-gradient(145deg, #1f1f1f, #2b2b2b);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .Ginput .MuiTextField-root .MuiInputBase-input {
-  color: #5d0a0a; /* Lighter text color for contrast */
-  padding: 12px 16px; /* Add padding inside the text field */
-  font-size: 0.63rem; /* Adjust font size for readability */
+  color: #5d0a0a;
+  padding: 12px 16px;
+  font-size: 0.63rem;
   font-family: "Press Start 2P", system-ui;
 }
 
 .Ginput .MuiTextField-root:focus-within {
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.9); /* Brighter glowing effect on focus */
-  border: 2px solid #00bcd4; /* Neon blue border on focus */
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+  border: 2px solid #00bcd4;
 }
 
 .Ginput .MuiButton-root {
-  margin-top: 16px; /* Add spacing above the button */
-  width: 150px; /* Adjust width if needed */
-  background: linear-gradient(135deg, #e13661, #ff5722); /* Gradient background for button */
+  margin-top: 16px;
+  width: 150px;
+  background: linear-gradient(135deg, #e13661, #ff5722);
   color: white;
   border-radius: 8px;
   text-transform: none;
   font-weight: bold;
   transition: background 0.3s ease, transform 0.3s ease;
-  font-family: "Press Start 2P", system-ui;/* Smooth transition effects */
+  font-family: "Press Start 2P", system-ui;
 }
 
 .Ginput .MuiButton-root:hover {
-  background: linear-gradient(135deg, #ff5722, #e13661); /* Reverse gradient on hover */
-  transform: scale(1.05); /* Slight scaling effect on hover */
+  background: linear-gradient(135deg, #ff5722, #e13661);
+  transform: scale(1.05);
 }

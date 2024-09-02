@@ -1,56 +1,54 @@
-/* Define keyframes for smooth animations */
 @keyframes smoothFadeIn {
   from {
-    opacity: 0; /* Start completely transparent */
+    opacity: 0;
   }
   to {
-    opacity: 1; /* End fully opaque */
+    opacity: 1;
   }
 }
 
 @keyframes scaleFadeIn {
   from {
-    transform: scale(0.8); /* Start slightly smaller */
-    opacity: 0; /* Start completely transparent */
+    transform: scale(0.8);
+    opacity: 0;
   }
   to {
-    transform: scale(1); /* End at normal size */
-    opacity: 1; /* End fully opaque */
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
 @keyframes slideInFromTop {
   from {
-    transform: translateY(-100px); /* Start off-screen at the top */
-    opacity: 0; /* Start completely transparent */
+    transform: translateY(-100px);
+    opacity: 0;
   }
   to {
-    transform: translateY(0); /* End in the normal position */
-    opacity: 1; /* End fully opaque */
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
 @keyframes cardEntry {
   from {
     opacity: 0;
-    transform: translateY(20px); /* Start slightly lower */
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0); /* End at normal position */
+    transform: translateY(0);
   }
 }
 
 @keyframes buttonHover {
   from {
-    background-color: #ff4500; /* Initial button color */
+    background-color: #ff4500;
   }
   to {
-    background-color: #ff6347; /* Hover button color */
+    background-color: #ff6347;
   }
 }
 
-/* Apply animations to components */
 .App {
   background-color: #000000;
   min-height: 100vh;
@@ -59,22 +57,20 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  padding-top: 60px; /* Adjust based on Navbar height */
-  background: url('background.jpg') no-repeat center center fixed; /* Game-themed background image */
+  padding-top: 60px;
+  background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  animation: smoothFadeIn 2s ease-out; /* Apply the fade-in animation */
+  animation: smoothFadeIn 2s ease-out;
 }
 
-/* Import required styles */
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 @import url('https://fonts.googleapis.com/css2?family=Comic+Sans+MS&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* Navbar styles */
 .Navbar {
   width: 100%;
-  background-color: #333; /* Dark background for the navbar */
+  background-color: #333;
   color: white;
   text-align: center;
   padding: 10px 0;
@@ -84,8 +80,8 @@
   z-index: 1000;
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
-  font-style: normal; /* Ensure the navbar is above other content */
-  animation: slideInFromTop 1s ease-out; /* Apply slide-in animation */
+  font-style: normal;
+  animation: slideInFromTop 1s ease-out;
 }
 
 .Navbar h1 {
@@ -94,12 +90,11 @@
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-style: normal;
-  animation: scaleFadeIn 1.5s ease-out; /* Apply scaling and fading animation */
+  animation: scaleFadeIn 1.5s ease-out;
 }
 
-/* Button styles with hover effect */
 .button {
-  background-color: #ff4500; /* Example button color */
+  background-color: #ff4500;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -109,21 +104,19 @@
 }
 
 .button:hover {
-  background-color: #ff6347; /* Change color on hover */
-  transform: scale(1.1); /* Slightly increase size on hover */
+  background-color: #ff6347;
+  transform: scale(1.1);
 }
 
-/* Card styles with entry animation */
 .Card {
   background-color: #222;
   border-radius: 10px;
   padding: 20px;
   margin: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  animation: cardEntry 0.5s ease-out; /* Apply entry animation */
+  animation: cardEntry 0.5s ease-out;
 }
 
-/* Transition effects for interactive elements */
 .transition-element {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
