@@ -184,7 +184,7 @@ function Gdisplay({ firstGame, secondGame }) {
           <Grid item xs={12} md={6} key={index}>
             <Box sx={{ p: 2, height: "100%" }}>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                
                 animate={controls}
                 transition={{ duration: 0.8 }}
               >
