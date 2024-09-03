@@ -5,7 +5,7 @@ Project Setup Instructions
 
 These instructions outline how to get the project up and running LOCALLY .
 
-The Entire application is hosted online at the link given BELOW:
+The Entire application is hosted online at the link given BELOW using AWS:
 
 CLOUD LINK :  [https://qc-main.db4e6lp0kz2sp.amplifyapp.com/]
 
