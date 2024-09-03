@@ -9,7 +9,7 @@ The Entire application is hosted online at the link given BELOW using AWS:
 
 CLOUD LINK :  [https://qc-main.db4e6lp0kz2sp.amplifyapp.com/]
 
-(Although I would prefer for this application to be viewed locally as the Framer Transitions seemed to break on the compiling the REACT build and had to revert back to a slightly older version which makes it look a little bit smoother)
+(Although I would prefer for this application to be viewed locally as the Framer Transitions seemed to break on the compiling the REACT build and had to revert back to a slightly older version.   The local build  make the card content  look a little bit smoother and more elegant )
 
 For a detailed understanding of the approach taken while building this project, please refer to the separate README file in this repository.
 
