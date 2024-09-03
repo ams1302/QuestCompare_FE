@@ -110,7 +110,7 @@ function Gdisplay({ firstGame, secondGame }) {
         const delay = 2000; // 2 seconds delay
         const timeoutId = setTimeout(async () => {
           try {
-            const response = await axios.get("http://localhost:3001/api/latest-games");
+            const response = await axios.get("https://questcompare-be.onrender.com/api/latest-games");
             setLatestGames(response.data);
             setLoading(false);
             controls.start({ opacity: 1, y: 0, transition: { duration: 0.8 } });
@@ -140,7 +140,7 @@ function Gdisplay({ firstGame, secondGame }) {
   const handleSubmit = async () => {
     setSubmitFlag(true)
     try {
-      const response = await axios.post("http://localhost:3001/api/send-to-api", {
+      const response = await axios.post("https://questcompare-be.onrender.com/api/send-to-api", {
         inputValue,
         firstGame,
         secondGame,

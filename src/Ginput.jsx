@@ -20,7 +20,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
   useEffect(() => {
     const clearData = async () => {
       try {
-        await axios.post('http://localhost:3001/api/clear');
+        await axios.post('https://questcompare-be.onrender.com/api/clear');
         console.log('Database cleared');
       } catch (error) {
         console.error('Error clearing database:', error);
@@ -32,7 +32,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
 
   const fetchSearchData = async (gameName, setSearchResult) => {
     try {
-      const response = await axios.post('http://localhost:3001/api/games', {
+      const response = await axios.post('https://questcompare-be.onrender.com/api/games', {
         gameName
       });
       setSearchResult(response.data);
@@ -47,7 +47,7 @@ function Ginput({ setSubmitFlag, setFirstGame, setSecondGame, setShowNextCompone
       setButtonClicked(true);
       console.log('Choices finalized:', game1, game2);
       try {
-        await axios.post('http://localhost:3001/api/mongoadd', {
+        await axios.post('https://questcompare-be.onrender.com/api/mongoadd', {
           game1, game2
         });
         setFirstGame(game1);
