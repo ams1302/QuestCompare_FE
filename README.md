@@ -3,13 +3,19 @@ Project Setup Instructions
 
 **********************************************NOTE***********************************************************
 
-These instructions outline how to get the project up and running.
+These instructions outline how to get the project up and running LOCALLY .
+
+The Entire application is hosted online at the link given BELOW:
+
+CLOUD LINK :  [https://qc-main.db4e6lp0kz2sp.amplifyapp.com/]
+
+(Although I would prefer for this application to be viewed locally as the Framer Transitions seemed to break on the compiling the REACT build and had to revert back to a slightly older version which makes it look a little bit smoother)
 
 For a detailed understanding of the approach taken while building this project, please refer to the separate README file in this repository.
 
 **********************************************NOTE************************************************************
 
-Cloud Link: 
+
 
 Requirements to Run the Project
 STEP 1:
@@ -35,7 +41,7 @@ IF you start the server from the branch named "QC/main" there is no need to do a
 The steps below are only necessary if you need  to run the entire application  on a local machine
 
 
-IF you want to run the entire application locally switch the branch of the frontend to "QC/mainlocal" and proceed with the instructions below
+IF you want to run the ENTIRE  application LOCALLY switch the branch of the frontend to "QC/mainlocal" and proceed with the instructions below
 
 **********************************************NOTE************************************************************
 
