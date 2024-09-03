@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <header className="Navbar">
-        <a href="http://localhost:3000/"><h1>Compare Quest </h1></a>
+        <a href="/"><h1>Compare Quest </h1></a>
       </header>
       
       {submitFlag ? (
