@@ -9,7 +9,7 @@ For a detailed understanding of the approach taken while building this project, 
 
 **********************************************NOTE************************************************************
 
-Cloud Link: [Insert Cloud Link Here]
+Cloud Link: 
 
 Requirements to Run the Project
 STEP 1:
