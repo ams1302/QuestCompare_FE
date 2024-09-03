@@ -31,8 +31,11 @@ Start the development server:
 
 **********************************************NOTE***********************************************************
 
-IF you start the server from the branch named "QC/main2" there is no need to do any of the steps below as the backend has been deployed entirely on the cloud"
+IF you start the server from the branch named "QC/main" there is no need to do any of the steps below as the backend has been deployed entirely on the cloud"
 The steps below are only necessary if you need  to run the entire application  on a local machine
+
+
+IF you want to run the entire application locally switch the branch of the frontend to "QC/mainlocal" and proceed with the instructions below
 
 **********************************************NOTE************************************************************
 
