@@ -67,15 +67,15 @@ const sliderSettings = {
 const colors = [
   
   "#4CAF50", 
-  "#2196F3", // Blue
-  "#E91E63", // Pink
-  "#FFC107", // Amber
-  "#009688", // Teal
-  "#673AB7", // Indigo
-  "#3F51B5", // Indigo Blue
-  "#FF5722", // Deep Orange
-  "#00BCD4", // Cyan
-  "#9C27B0", // Purple
+  "#2196F3", 
+  "#E91E63", 
+  "#FFC107", 
+  "#009688", 
+  "#673AB7", 
+  "#3F51B5", 
+  "#FF5722", 
+  "#00BCD4", 
+  "#9C27B0", 
 ];
 
 const getPlatformColor = (platform) => {
@@ -86,9 +86,9 @@ const getPlatformColor = (platform) => {
   } else if (platform.toLowerCase().includes('nintendo')) {
     return '#E60012'; 
   } else if (platform.toLowerCase().includes('pc')) {
-    return '#171a21'; // Grey
+    return '#171a21'; 
   } else {
-    return '#333'; // Default color
+    return '#333'; 
   }
 };
 
