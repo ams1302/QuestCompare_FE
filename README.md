@@ -1,45 +1,46 @@
-*************NOTE************
+Project Setup Instructions
+NOTE: These instructions outline how to get the project up and running.
 
-THESE ARE JUST INSTRUCTIONS ON HOW TO GET THE PROJECT UP AND RUNNING 
+ For a detailed understanding of the approach taken while building this project, please refer to the separate README file in this repository.
 
-THE ENTIRE APPROACH TO THE PROJECT IS IN A SEPERATE README FILE IN THIS REPOSITORY
-READ THAT TO UNDERSTAND APPROACH TAKEN WHILE BUILDING THIS PROJECT THANK YOU
+Cloud Link: [Insert Cloud Link Here]
 
+Requirements to Run the Project
+STEP 1: Set Up the Frontend
 
-CLOUD LINK:
+Clone the frontend directory from the following repository:
+[https://github.com/ams1302/QuestCompare_FE.git](Front-endRepo)
 
+Navigate into the cloned directory:
+```cd QuestCompare_FE ```
 
+Install all required dependencies:
+```npm install```
 
-
-
-
-
-
-
-
-Requirements to run the project 
-
-STEP 1:
-Clone the front end directory from [https://github.com/ams1302/QuestCompare_FE]
-into a local directory
-
-Run the command "npm install " to install all directories
-
-Then run the command "npm start"
-
-STEP 2: 
-
-Clone the front end directory from [https://github.com/ams1302/QuestCompare_BE]
-into a SEPERATE  local directory
-
-Run the command "npm install" to install all directories
-
-Then run the command "node server.js" to start the local server 
+Start the development server:
+```npm start```
 
 
-STEP 3: 
+STEP 2:
 
-Head on over to localhost:3000 to  view the project
+Clone the backend directory from the following repository:
+[https://github.com/ams1302/QuestCompare_BE.git](Back-endRepo)
+
+Navigate into the cloned directory:
+```cd QuestCompare_BE ```
+
+Install all required dependencies:
+```npm install```
+
+Start the development server:
+```node server.js```
 
 
-NOTE: I have shared the .env file so that running the project becomes easier and snappier tasks for the given authorities. PLEASE do not subject it to any misuse
+STEP 3: View the Project
+Open your web browser and go to http://localhost:3000 to view the project.
+
+NOTE: The .env file has been shared to simplify the setup process. Please use it responsibly and avoid any misuse.
+
+
+
+
