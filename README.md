@@ -19,8 +19,11 @@ Install all required dependencies:
 
 Start the development server:
 ```npm start```
+**********************************************NOTE***********************************************************
+IF you start the server from the branch named "QC/main2" there is no need to do any of the steps below as the backend has been deployed entirely on the cloud"
+The steps below are only necessary if you need  to run the entire application  on a local machine
 
-
+**********************************************NOTE************************************************************
 STEP 2:
 
 Clone the backend directory from the following repository:
