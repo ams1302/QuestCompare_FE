@@ -19,11 +19,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion, useAnimation } from "framer-motion";
-import CircularProgress from '@mui/material/CircularProgress'; // Import the CircularProgress component
+import CircularProgress from '@mui/material/CircularProgress'; 
 
 import "./Gdisplay.css"
 
-// Settings for the carousel
+
 const sliderSettings = {
   dots: true,
   infinite: true,
@@ -65,8 +65,8 @@ const sliderSettings = {
 };
 
 const colors = [
-   // Deep Purple
-  "#4CAF50", // Green
+  
+  "#4CAF50", 
   "#2196F3", // Blue
   "#E91E63", // Pink
   "#FFC107", // Amber
@@ -80,11 +80,11 @@ const colors = [
 
 const getPlatformColor = (platform) => {
   if (platform.toLowerCase().includes('xbox')) {
-    return '#107C10'; // Green
+    return '#107C10'; 
   } else if (platform.toLowerCase().includes('playstation')) {
-    return '#003791'; // Blue
+    return '#003791'; 
   } else if (platform.toLowerCase().includes('nintendo')) {
-    return '#E60012'; // Red
+    return '#E60012'; 
   } else if (platform.toLowerCase().includes('pc')) {
     return '#171a21'; // Grey
   } else {
@@ -107,7 +107,7 @@ function Gdisplay({ firstGame, secondGame }) {
   useEffect(() => {
     const fetchLatestGames = async () => {
       try {
-        const delay = 2000; // 2 seconds delay
+        const delay = 2000; 
         const timeoutId = setTimeout(async () => {
           try {
             const response = await axios.get("https://questcompare-be.onrender.com/api/latest-games");
@@ -215,9 +215,9 @@ function Gdisplay({ firstGame, secondGame }) {
                         bgcolor: "#00c853",
                         color: "white",
                         borderRadius: "4px",
-                        padding: "8px 12px", // Increased padding for better prominence
+                        padding: "8px 12px",
                         fontWeight: "bold",
-                        fontSize: "1.2rem", // Increased font size for better visibility
+                        fontSize: "1.2rem", 
                         mb: 1,
                       }}
                     >
